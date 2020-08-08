@@ -1,0 +1,12 @@
+.user-list-action-btn {
+  margin-right: 5px;
+}
+
+.user-list-add-user-link {
+  font-size: 0.6em;
+  margin-bottom: 16px;
+}
+
+.table-actions-header {
+  min-width: 120px;
+}

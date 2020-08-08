@@ -1,0 +1,55 @@
+.header-navbar {
+  width:100%;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+}
+
+.logo-text {
+  color: #f78736;
+  font-weight: bold;
+}
+
+.d-inline-block {
+  height: 5vmin;
+  pointer-events: none;
+}
+
+.nav-link:hover {
+  cursor:pointer;
+}
+  
+@media (prefers-reduced-motion: no-preference) {
+  .d-inline-block {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-text {
+  margin-left:10px;
+}
+
+.fixed-top {
+  position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.navbar-transparent {
+  background: transparent !important;
+  padding-top: 25px;
+  box-shadow: none;
+}
+
+.navbar-info {
+  margin-right:20px;
+}

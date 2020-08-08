@@ -1,0 +1,13 @@
+.login-form-hint {
+  font-size:0.7em;
+  margin-left:15px;
+  margin-bottom:10px;
+}
+
+.required-mark {
+  color:red;
+}
+
+.forgot-password-button {
+  padding-left:0;
+}
