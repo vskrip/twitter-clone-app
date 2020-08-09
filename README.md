@@ -18,7 +18,7 @@ Step into the unpackaged project folder by typing in a terminal/console window:
 
 `cd twitter-clone-app`
 
-Start project with the next command:
+Start the project with the next command:
 
 `npm start`
 
