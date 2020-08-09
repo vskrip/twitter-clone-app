@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import TwittList from "../../Widgets/TwittList";
+
+import { useDispatch } from "react-redux";
+import { twittActions } from "../../../_actions";
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 
@@ -9,10 +12,37 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import "./TwittsPage.css";
 
 const TwittsPage = () => {
-  // const onAddUser = () => {
-  //   console.log('onAddUser event');
-  //   window.location.href='/add-user';
-  // };
+  const [newTwitt, setNewTwitt] = useState({
+    user_id: 2,
+    name: "user2",
+    email: "user2@gmail.com",
+    body: "",
+    isFollow: false,
+  });
+  const [validated, setValidated] = useState(false);
+
+  const dispatch = useDispatch();
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setNewTwitt((newTwitt) => ({ ...newTwitt, [name]: value }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const isValidForm = form.checkValidity();
+
+    setValidated(true);
+
+    if (isValidForm === false) {
+      event.stopPropagation();
+    } else {
+      console.log("newTwitt - ", newTwitt);
+      dispatch(twittActions.create(newTwitt));
+    }
+  }
 
   return (
     <div className="twitts-page">
@@ -29,7 +59,7 @@ const TwittsPage = () => {
             <Card>
               <Card.Header>Tweet Something</Card.Header>
               <Card.Body>
-                <Form>
+                <Form noValidate validated={validated} onSubmit={handleSubmit}>
                   <Form.Group controlId="twitt">
                     {/* <Form.Control
                       className="control"
@@ -43,7 +73,10 @@ const TwittsPage = () => {
                     <Form.Control
                       as="textarea"
                       rows="3"
+                      name="body"
+                      onChange={handleChange}
                       placeholder="Text here..."
+                      required
                     />
                   </Form.Group>
                   <Button variant="primary" type="submit">

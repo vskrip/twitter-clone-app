@@ -6,6 +6,7 @@ const API_URL = "http://127.0.0.1:8000";
 export const twittService = {
   getAllTwitts,
   create,
+  update,
 };
 
 function getAllTwitts() {
@@ -27,6 +28,18 @@ function create(twitt) {
   };
 
   return fetch(`${API_URL}/api/twitts`, requestOptions).then(_handleResponse);
+}
+
+function update(twitt) {
+  const requestOptions = {
+    method: "PUT",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(twitt),
+  };
+
+  return fetch(`${API_URL}/api/twitts/${twitt.id}`, requestOptions)
+    .then(_handleResponse)
+    .then(_handleUserData);
 }
 
 function _handleResponse(response) {
@@ -65,7 +78,8 @@ function _transformData(data) {
     userId: data.user_id,
     name: data.name,
     email: data.email,
-    avatarImgPath: data.path,
+    avatarImgPath: data.img_path,
     body: data.body,
+    isFollow: data.isFollow,
   };
 }

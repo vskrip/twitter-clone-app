@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Table } from "react-bootstrap";
+import { Form, Container, Row, Col, Image } from "react-bootstrap";
 // import { useHistory } from "react-router";
 
 // import ReactTooltip from "react-tooltip";
@@ -37,6 +37,15 @@ const TwittList = (props) => {
       // do componentDidUpate logic
     }
   }, [dispatch]);
+
+  const switchValue = (value, index, item) => {
+    let tempTwittListData = twittsListData;
+    tempTwittListData[index] = {
+      ...item,
+      [value]: item[value] === 1 ? 0 : 1,
+    };
+    dispatch(twittActions.update(tempTwittListData[index]));
+  };
 
   // const handleModalClose = () => {
   //   setShow(false);
@@ -141,53 +150,47 @@ const TwittList = (props) => {
   //   );
   // }
 
-  let num = 0;
-
   // const emptyListAlert = <tr><td colSpan="10"><b>The list of users are empty!</b></td></tr>;
 
-  console.log("twitts - ", twitts);
+  // console.log("twittsListData - ", twittsListData);
 
   const listItems = twittsListData.map((item, index) => {
     const { ...itemData } = item;
     return (
-      <tr key={index}>
-        <td>{itemData.id}</td>
-        <td>{itemData.userId}</td>
-        <td>{itemData.body}</td>
-        <td>{itemData.email}</td>
-        {/* <td>
-          <button
-            type="button"
-            className="btn btn-outline-success btn-sm user-list-action-btn"
-            // onClick={() => replaceModalItem(index)}
-            data-tip
-            data-for="editDetailsTip"
-          >
-            <FontAwesomeIcon className="user-list-item-icon" icon={faEdit} />
-          </button>
-
-          <ReactTooltip id="editDetailsTip" place="top" effect="solid">
-            Edit Details
-          </ReactTooltip>
-
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-sm user-list-action-btn"
-            onClick={() => deleteItem(index)}
-            data-tip
-            data-for="deleteTip"
-          >
-            <FontAwesomeIcon
-              className="user-list-item-icon"
-              icon={faTrashAlt}
+      <Container key={index} className="twittContainer">
+        <Row>
+          <Col xs={2} md={1}>
+            <Image
+              className="avatarImg"
+              src={require("../../../assets/img/faces/kaci-baum-2.jpg")}
+              rounded
             />
-          </button>
-
-          <ReactTooltip id="deleteTip" place="top" effect="solid">
-            Delete
-          </ReactTooltip>
-        </td> */}
-      </tr>
+          </Col>
+          <Col md="2">
+            <b>{itemData.name}</b>
+          </Col>
+          <Col md="4">{itemData.email}</Col>
+          <Col md="5">
+            <Form>
+              <Form.Check custom type="switch">
+                <Form.Check.Input
+                  checked={itemData.isFollow}
+                  onChange={() => {}}
+                />
+                <Form.Check.Label
+                  onClick={() => switchValue("isFollow", index, itemData)}
+                >
+                  {itemData.isFollow ? `Follow  ` : "Unfollow"}
+                </Form.Check.Label>
+              </Form.Check>
+            </Form>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">{itemData.body}</Col>
+        </Row>
+        <Row></Row>
+      </Container>
     );
   });
 
@@ -203,21 +206,21 @@ const TwittList = (props) => {
       {/* {addUserAccountButton()} */}
       {/* End Add Twitt Button */}
       {/* Twitt List Table */}
-      <Table striped bordered hover size="sm">
+      {/* <Table striped bordered hover size="sm">
         <thead>
           <tr>
             <th>ID</th>
             <th>User ID</th>
             <th>Body</th>
-            <th>Email</th>
-            {/* <th className="table-actions-header">Actions</th> */}
-          </tr>
+            <th>Email</th> */}
+      {/* <th className="table-actions-header">Actions</th> */}
+      {/* </tr>
         </thead>
-        <tbody>
-          {listItems}
-          {/* { (userListData.length !==0) ? listItems : emptyListAlert } */}
-        </tbody>
-      </Table>
+        <tbody> */}
+      {listItems}
+      {/* { (userListData.length !==0) ? listItems : emptyListAlert } */}
+      {/* </tbody>
+      </Table> */}
       {/* End Twitt List Table */}
     </div>
   );
