@@ -18,6 +18,10 @@ Step into the unpackaged project folder by typing in a terminal/console window:
 
 `cd twitter-clone-app`
 
+Install necessary node modules by:
+
+`npm install`
+
 Start the project with the next command:
 
 `npm start`
