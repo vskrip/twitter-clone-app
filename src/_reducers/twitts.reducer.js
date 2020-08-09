@@ -28,9 +28,10 @@ export function twitts(state = initialState, action) {
         loading: true,
       };
     case twittConstants.CREATE_SUCCESS:
+      console.log("state - ", state);
+      console.log("action - ", action);
       return {
         ...state,
-        // items: action.items,
         loading: false,
       };
     case twittConstants.CREATE_FAILURE:

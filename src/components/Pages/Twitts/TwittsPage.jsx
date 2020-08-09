@@ -39,8 +39,8 @@ const TwittsPage = () => {
     if (isValidForm === false) {
       event.stopPropagation();
     } else {
-      console.log("newTwitt - ", newTwitt);
       dispatch(twittActions.create(newTwitt));
+      window.location.reload(false);
     }
   }
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Form, Container, Row, Col, Image } from "react-bootstrap";
+
+import avatarImage from "../../../assets/img/faces/user1-picture.png";
 // import { useHistory } from "react-router";
 
 // import ReactTooltip from "react-tooltip";
@@ -162,7 +164,8 @@ const TwittList = (props) => {
           <Col xs={2} md={1}>
             <Image
               className="avatarImg"
-              src={require("../../../assets/img/faces/kaci-baum-2.jpg")}
+              // src={require("../../../assets/img/faces/user1-picture.png")}
+              src={avatarImage}
               rounded
             />
           </Col>
