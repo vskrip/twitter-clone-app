@@ -7,7 +7,6 @@ import ReactTooltip from "react-tooltip";
 
 import { useDispatch, useSelector } from "react-redux";
 import { twittActions, userActions } from "../../../_actions";
-import { history } from "../../../_helpers";
 
 import avatarImagePath1 from "../../../assets/img/faces/avatar1-picture.png";
 import avatarImagePath2 from "../../../assets/img/faces/avatar2-picture.png";
@@ -67,6 +66,8 @@ const TwittsPage = () => {
   const [validated, setValidated] = useState(false);
   const [show, setShow] = useState(false);
   const user = useSelector((state) => state.authentication.user);
+  const [currentUser, setCurrentUser] = useState(user);
+  // const [newTweetBody, setNewTweetBody] = useState("");
   const dispatch = useDispatch();
 
   const twitts = useSelector((state) => state.twitts);
@@ -79,8 +80,8 @@ const TwittsPage = () => {
     body: "",
     isFollow: false, // but default
     avatarImgFileName:
-      user && user.avatarImgFileName
-        ? user.avatarImgFileName
+      currentUser && currentUser.avatarImgFileName
+        ? currentUser.avatarImgFileName
         : "default-picture.png",
   });
 
@@ -104,11 +105,9 @@ const TwittsPage = () => {
       avatarImgFileName: avatarImgFileName,
     };
 
-    dispatch(userActions.update(tempUser));
     localStorage.setItem("user", JSON.stringify(tempUser));
-
-    // TODO: update and remove hardcoding on the next version
-    history.go("/twitts");
+    setCurrentUser(tempUser);
+    dispatch(userActions.update(tempUser));
 
     setShow(false);
     handleModalClose();
@@ -129,6 +128,7 @@ const TwittsPage = () => {
     const form = event.currentTarget;
     const isValidForm = form.checkValidity();
 
+    document.getElementById("twitt").value = "";
     setValidated(true);
 
     const tempTwitts = twittsListData;
@@ -138,13 +138,13 @@ const TwittsPage = () => {
     } else {
       tempTwitts.push(newTwitt);
       dispatch(twittActions.create(newTwitt));
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   }
 
   const currentUserAvatarImage = avatarImages.filter(
     (avatarImagesItem) =>
-      avatarImagesItem.imageFileName === user.avatarImgFileName
+      avatarImagesItem.imageFileName === currentUser.avatarImgFileName
   );
 
   return (
