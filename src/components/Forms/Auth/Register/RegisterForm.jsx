@@ -105,7 +105,7 @@ const RegisterForm = () => {
                 required
               />
               {submitted && !user.password && (
-                <div className="invalid-feedback">Password is required</div>
+                <div className="invalid-feedback">Password is required!</div>
               )}
             </Form.Group>
             <Form.Group controlId="confirmPassword">
@@ -121,9 +121,12 @@ const RegisterForm = () => {
               />
               {submitted && !user.c_password && (
                 <div className="invalid-feedback">
-                  Confirm password is required
+                  Confirm password is required!
                 </div>
               )}
+              <div className="register-form-notice">
+                * Password should contain at least 8 characters!
+              </div>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>

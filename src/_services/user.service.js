@@ -1,8 +1,8 @@
 // import config from 'config';
 import { authHeader } from "../_helpers";
 
-// const API_URL = "http://127.0.0.1:8000";
-const API_URL = "https://vskripachev-154323.uc.r.appspot.com";
+const API_URL = "http://127.0.0.1:8000";
+// const API_URL = "https://vskripachev-154323.uc.r.appspot.com";
 
 export const userService = {
   login,
