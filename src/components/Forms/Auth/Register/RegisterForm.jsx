@@ -12,7 +12,7 @@ import "./RegisterForm.css";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     c_password: "",
@@ -44,14 +44,7 @@ const RegisterForm = () => {
     if (isValidForm === false) {
       event.stopPropagation();
     } else {
-      if (
-        user.firstName &&
-        user.lastName &&
-        user.username &&
-        user.email &&
-        user.password &&
-        user.c_password
-      ) {
+      if (user.name && user.email && user.password && user.c_password) {
         dispatch(userActions.register(user));
       }
     }
@@ -74,15 +67,15 @@ const RegisterForm = () => {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 className="control"
-                name="username"
+                name="name"
                 type="text"
-                value={user.username}
+                value={user.name}
                 placeholder="Username"
                 onChange={handleChange}
                 required
               />
-              {submitted && !user.userame && (
-                <div className="invalid-feedback">Userame is required</div>
+              {submitted && !user.name && (
+                <div className="invalid-feedback">Username is required</div>
               )}
             </Form.Group>
             <Form.Group controlId="email">

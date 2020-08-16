@@ -12,7 +12,10 @@ function Footer() {
           <nav className="footer-nav">
             <ul>
               <li>
-                <a href="/">TWITTS</a>
+                <a href="/">HOME</a>
+              </li>
+              <li>
+                <a href="/twitts">TWITTS</a>
               </li>
             </ul>
           </nav>

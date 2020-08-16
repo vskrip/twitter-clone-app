@@ -1,8 +1,8 @@
 // import config from 'config';
 import { authHeader } from "../_helpers";
 
-// const API_URL = "http://stylist-api.test/api/v1";
 const API_URL = "http://127.0.0.1:8000";
+// const API_URL = "https://vskripachev-154323.uc.r.appspot.com";
 
 export const userService = {
   login,
@@ -19,17 +19,20 @@ export const userService = {
 function login(email, password) {
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*", // will CORS desable
+    },
     body: JSON.stringify({ email, password }),
   };
 
-  return fetch(`${API_URL}/auth/login`, requestOptions)
+  return fetch(`${API_URL}/api/auth/login`, requestOptions)
     .then(_handleResponse)
     .then((user) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem("user", JSON.stringify(user.data));
 
-      return user;
+      return user.data;
     });
 }
 
@@ -98,7 +101,7 @@ function register(user) {
     body: JSON.stringify(user),
   };
 
-  return fetch(`${API_URL}/auth/register`, requestOptions).then(
+  return fetch(`${API_URL}/api/auth/register`, requestOptions).then(
     _handleResponse
   );
 }
@@ -106,11 +109,15 @@ function register(user) {
 function update(user) {
   const requestOptions = {
     method: "PUT",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
+    headers: {
+      ...authHeader(),
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*", // will CORS desable
+    },
     body: JSON.stringify(user),
   };
 
-  return fetch(`${API_URL}/users/${user.id}`, requestOptions)
+  return fetch(`${API_URL}/api/users/${user.id}`, requestOptions)
     .then(_handleResponse)
     .then(_handleUserData);
 }

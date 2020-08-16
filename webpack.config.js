@@ -13,12 +13,20 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: "file-loader",
+        loader: "file-loader",
+        options: {
+          name(resourcePath, resourceQuery) {
+            // `resourcePath` - `/absolute/path/to/file.js`
+            // `resourceQuery` - `?foo=bar`
+
+            if (process.env.NODE_ENV === "development") {
+              return "[path][name].[ext]";
+            }
+
+            return "[contenthash].[ext]";
           },
-        ],
+          esModule: false,
+        },
       },
     ],
   },
@@ -40,7 +48,7 @@ module.exports = {
   externals: {
     // global app config object
     config: JSON.stringify({
-      apiUrl: "http://stylist-api.test/api/v1/",
+      apiUrl: "http://127.0.0.1:8000/",
     }),
   },
 };

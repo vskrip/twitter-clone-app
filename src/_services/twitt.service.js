@@ -2,6 +2,7 @@
 import { authHeader } from "../_helpers";
 
 const API_URL = "http://127.0.0.1:8000";
+// const API_URL = "https://vskripachev-154323.uc.r.appspot.com";
 
 export const twittService = {
   getAllTwitts,
@@ -23,7 +24,7 @@ function getAllTwitts() {
 function create(twitt) {
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { ...authHeader(), "Content-Type": "application/json" },
     body: JSON.stringify(twitt),
   };
 
@@ -78,7 +79,7 @@ function _transformData(data) {
     userId: data.user_id,
     name: data.name,
     email: data.email,
-    avatarImgPath: data.img_path,
+    avatarImgFileName: data.avatarImgFileName,
     body: data.body,
     isFollow: data.isFollow,
   };

@@ -1,7 +1,10 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
-// import { useSelector } from "react-redux";
+import { history } from "../../_helpers";
+import { userActions } from "../../_actions";
+
+import { useDispatch, useSelector } from "react-redux";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
@@ -13,8 +16,23 @@ import { Navbar } from "react-bootstrap";
 import "./Header.css";
 
 const Header = () => {
-  // const isLoggedIn = useSelector((state) => state.authentication.loggedIn);
+  const isLoggedIn = useSelector((state) => state.authentication.loggedIn);
+  const dispatch = useDispatch();
 
+  const handleLogout = (history) => () => {
+    dispatch(userActions.logout());
+    history.push("/");
+  };
+
+  // status boxes on the navigation panel
+  const loginBox = (
+    <span className="navbar-info">
+      {/* Signed in as: <a href="/#">{user ? user.name : ""}</a> / */}
+      <Nav.Link className="logout-nav-link" onClick={handleLogout(history)}>
+        Logout
+      </Nav.Link>
+    </span>
+  );
   const welcomeBox = (
     <span className="navbar-info">
       <a href="/login">Login&nbsp;</a>/<a href="/register">&nbsp;Register</a>
@@ -43,7 +61,9 @@ const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           {/* <Nav>{isLoggedIn ? twittsMenuItem : null}</Nav> */}
           {/* <Nav>{twittsMenuItem}</Nav> */}
-          <Navbar.Text className="status-text">{welcomeBox}</Navbar.Text>
+          <Navbar.Text className="status-text">
+            {isLoggedIn ? loginBox : welcomeBox}{" "}
+          </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>
     </div>

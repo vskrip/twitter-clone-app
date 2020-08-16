@@ -23,7 +23,7 @@ function login(email, password) {
     userService.login(email, password).then(
       (user) => {
         dispatch(success(user));
-        history.push("/");
+        history.push("/twitts");
       },
       (error) => {
         dispatch(failure(error.toString()));

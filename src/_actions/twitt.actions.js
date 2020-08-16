@@ -37,7 +37,7 @@ function create(twitt) {
     twittService.create(twitt).then(
       (twitt) => {
         dispatch(success(twitt));
-        history.push("/");
+        history.push("/twitts");
         dispatch(alertActions.success("Posted successful"));
       },
       (error) => {

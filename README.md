@@ -2,6 +2,8 @@
 
 This project is an example of tweeter clone application.
 
+[Live Demo](https://helical-history-286014.uc.r.appspot.com/)
+
 ## Prerequisite
 
 This application is a web client for [twitter-clone-api](https://github.com/vskrip/twitter-clone-api/). If you need to install and try to use this application, you should install twitter-clone-api first.
@@ -9,6 +11,14 @@ This application is a web client for [twitter-clone-api](https://github.com/vskr
 ## Description
 
 This application builded with ReactJS/Redux.
+
+## Features
+
+- Registration an account, log in/out (Authentication OAuth 2.0 with laravel/password package)
+- Write and publish a tweet
+- Ability to view previous tweet updates
+- Follow/unfollow other users
+- Users can change their avatar
 
 ## Installation
 

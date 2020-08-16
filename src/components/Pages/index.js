@@ -1,3 +1,4 @@
+import HomePage from "./Home";
 import TwittsPage from "./Twitts";
 
-export { TwittsPage };
+export { HomePage, TwittsPage };

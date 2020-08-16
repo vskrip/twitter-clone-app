@@ -28,8 +28,6 @@ export function twitts(state = initialState, action) {
         loading: true,
       };
     case twittConstants.CREATE_SUCCESS:
-      console.log("state - ", state);
-      console.log("action - ", action);
       return {
         ...state,
         loading: false,

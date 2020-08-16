@@ -1,3 +1,16 @@
-.avatarImg {
+.avatar-img {
   width: 36px;
+}
+.avatar-img:hover {
+  cursor: pointer;
+}
+.recent-tweets-column {
+  margin-bottom: 120px;
+}
+.user-avatar {
+  float: right;
+}
+
+.user-title {
+  font-size: 0.7em;
 }
